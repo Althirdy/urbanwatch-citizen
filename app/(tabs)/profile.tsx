@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Text } from '@/components/ui/text';
-import { View, ScrollView, TouchableOpacity, Switch, TextInput } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Switch } from 'react-native';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { 
   User, 
   Mail, 
@@ -86,72 +88,72 @@ export default function ProfileScreen() {
               {/* First Name */}
               <View>
                 <Text className="text-sm font-medium text-muted-foreground mb-2">First Name</Text>
-                <View className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-700">
-                  <TextInput
-                    value={userInfo.firstName}
-                    onChangeText={(text) => setUserInfo({...userInfo, firstName: text})}
-                    className="text-foreground text-base"
-                    placeholderTextColor={colorScheme === 'dark' ? '#9CA3AF' : '#6B7280'}
-                  />
-                </View>
+                <Input
+                  value={userInfo.firstName}
+                  onChangeText={(text) => setUserInfo({...userInfo, firstName: text})}
+                  placeholder="Enter first name"
+                />
               </View>
 
               {/* Last Name */}
               <View>
                 <Text className="text-sm font-medium text-muted-foreground mb-2">Last Name</Text>
-                <View className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-700">
-                  <TextInput
-                    value={userInfo.lastName}
-                    onChangeText={(text) => setUserInfo({...userInfo, lastName: text})}
-                    className="text-foreground text-base"
-                    placeholderTextColor={colorScheme === 'dark' ? '#9CA3AF' : '#6B7280'}
-                  />
-                </View>
+                <Input
+                  value={userInfo.lastName}
+                  onChangeText={(text) => setUserInfo({...userInfo, lastName: text})}
+                  placeholder="Enter last name"
+                />
               </View>
 
               {/* Email */}
               <View>
                 <Text className="text-sm font-medium text-muted-foreground mb-2">Email</Text>
-                <View className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-700 flex-row items-center">
-                  <Mail size={16} color={iconColor} strokeWidth={2} />
-                  <TextInput
+                <View className="relative">
+                  <Input
                     value={userInfo.email}
                     onChangeText={(text) => setUserInfo({...userInfo, email: text})}
-                    className="text-foreground text-base ml-2 flex-1"
+                    placeholder="Enter email address"
                     keyboardType="email-address"
-                    placeholderTextColor={colorScheme === 'dark' ? '#9CA3AF' : '#6B7280'}
+                    className="pl-10"
                   />
+                  <View className="absolute left-3 top-1/2 -translate-y-1/2">
+                    <Mail size={16} color={iconColor} strokeWidth={2} />
+                  </View>
                 </View>
               </View>
 
               {/* Phone */}
               <View>
                 <Text className="text-sm font-medium text-muted-foreground mb-2">Phone Number</Text>
-                <View className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-700 flex-row items-center">
-                  <Phone size={16} color={iconColor} strokeWidth={2} />
-                  <TextInput
+                <View className="relative">
+                  <Input
                     value={userInfo.phone}
                     onChangeText={(text) => setUserInfo({...userInfo, phone: text})}
-                    className="text-foreground text-base ml-2 flex-1"
+                    placeholder="Enter phone number"
                     keyboardType="phone-pad"
-                    placeholderTextColor={colorScheme === 'dark' ? '#9CA3AF' : '#6B7280'}
+                    className="pl-10"
                   />
+                  <View className="absolute left-3 top-1/2 -translate-y-1/2">
+                    <Phone size={16} color={iconColor} strokeWidth={2} />
+                  </View>
                 </View>
               </View>
 
               {/* Address */}
               <View>
                 <Text className="text-sm font-medium text-muted-foreground mb-2">Address</Text>
-                <View className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-700 flex-row items-start">
-                  <MapPin size={16} color={iconColor} strokeWidth={2} className="mt-1" />
-                  <TextInput
+                <View className="relative">
+                  <Textarea
                     value={userInfo.address}
                     onChangeText={(text) => setUserInfo({...userInfo, address: text})}
-                    className="text-foreground text-base ml-2 flex-1"
+                    placeholder="Enter your address"
                     multiline
                     numberOfLines={3}
-                    placeholderTextColor={colorScheme === 'dark' ? '#9CA3AF' : '#6B7280'}
+                    className="pl-10 h-20"
                   />
+                  <View className="absolute left-3 top-3">
+                    <MapPin size={16} color={iconColor} strokeWidth={2} />
+                  </View>
                 </View>
               </View>
             </View>

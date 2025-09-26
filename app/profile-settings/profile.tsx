@@ -5,14 +5,14 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { 
-  User, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Bell, 
-  Shield, 
-  Settings, 
+import {
+  User,
+  Mail,
+  Phone,
+  MapPin,
+  Bell,
+  Shield,
+  Settings,
   ChevronRight,
   Camera,
   Edit3
@@ -53,7 +53,7 @@ export default function ProfileScreen() {
                   <Camera size={16} color="white" strokeWidth={2} />
                 </TouchableOpacity>
               </View>
-              
+
               <Text className="text-xl font-bold text-foreground mb-1">
                 {userInfo.firstName} {userInfo.lastName}
               </Text>
@@ -90,7 +90,7 @@ export default function ProfileScreen() {
                 <Text className="text-sm font-medium text-muted-foreground mb-2">First Name</Text>
                 <Input
                   value={userInfo.firstName}
-                  onChangeText={(text) => setUserInfo({...userInfo, firstName: text})}
+                  onChangeText={(text) => setUserInfo({ ...userInfo, firstName: text })}
                   placeholder="Enter first name"
                 />
               </View>
@@ -100,7 +100,7 @@ export default function ProfileScreen() {
                 <Text className="text-sm font-medium text-muted-foreground mb-2">Last Name</Text>
                 <Input
                   value={userInfo.lastName}
-                  onChangeText={(text) => setUserInfo({...userInfo, lastName: text})}
+                  onChangeText={(text) => setUserInfo({ ...userInfo, lastName: text })}
                   placeholder="Enter last name"
                 />
               </View>
@@ -111,7 +111,7 @@ export default function ProfileScreen() {
                 <View className="relative">
                   <Input
                     value={userInfo.email}
-                    onChangeText={(text) => setUserInfo({...userInfo, email: text})}
+                    onChangeText={(text) => setUserInfo({ ...userInfo, email: text })}
                     placeholder="Enter email address"
                     keyboardType="email-address"
                     className="pl-10"
@@ -128,7 +128,7 @@ export default function ProfileScreen() {
                 <View className="relative">
                   <Input
                     value={userInfo.phone}
-                    onChangeText={(text) => setUserInfo({...userInfo, phone: text})}
+                    onChangeText={(text) => setUserInfo({ ...userInfo, phone: text })}
                     placeholder="Enter phone number"
                     keyboardType="phone-pad"
                     className="pl-10"
@@ -145,7 +145,7 @@ export default function ProfileScreen() {
                 <View className="relative">
                   <Textarea
                     value={userInfo.address}
-                    onChangeText={(text) => setUserInfo({...userInfo, address: text})}
+                    onChangeText={(text) => setUserInfo({ ...userInfo, address: text })}
                     placeholder="Enter your address"
                     multiline
                     numberOfLines={3}
@@ -269,7 +269,7 @@ export default function ProfileScreen() {
           <Button className="w-full bg-blue-600 active:bg-blue-700">
             <Text className="text-white font-semibold">Save Changes</Text>
           </Button>
-          
+
           <Button variant="outline" className="w-full">
             <Text className="text-foreground font-semibold">Sign Out</Text>
           </Button>

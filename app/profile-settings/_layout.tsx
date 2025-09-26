@@ -5,17 +5,12 @@ const ProfileSettingsLayout = () => {
   return (
     <Stack
       screenOptions={{
-        headerShown: false,
-        presentation: 'card'
+        headerShown: true,
+        presentation: 'card',
+        headerTitle: 'profile-settings'
       }}
     >
-      <Stack.Screen 
-        name="profile" 
-        options={{ 
-          title: 'Profile Settings',
-          headerBackTitle: 'Back'
-        }} 
-      />
+      <Stack.Screen name="profile" />
     </Stack>
   )
 }

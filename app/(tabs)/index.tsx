@@ -2,6 +2,7 @@ import { Text } from '@/components/ui/text';
 import { View, TouchableOpacity, ScrollView } from 'react-native';
 import { Mic, FileText } from 'lucide-react-native';
 import { useColorScheme } from 'nativewind';
+import { router } from 'expo-router';
 import ConcernList from '@/components/concern-comp/concern-list';
 
 export default function CitizenScreen() {
@@ -44,7 +45,10 @@ export default function CitizenScreen() {
             </TouchableOpacity>
 
             {/* Manual Report Card */}
-            <TouchableOpacity className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700">
+            <TouchableOpacity 
+              className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700"
+              onPress={() => router.push('/emergency-report')}
+            >
               <View className="items-center">
                 {/* File Icon */}
                 <View className="w-16 h-16 bg-white dark:bg-gray-700 rounded-full items-center justify-center mb-4 shadow-sm">

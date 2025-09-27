@@ -2,6 +2,7 @@ import React from 'react';
 import { Text } from '@/components/ui/text';
 import { TouchableOpacity, View } from 'react-native';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { router } from 'expo-router';
 
 interface Concern {
   id: string;
@@ -93,7 +94,7 @@ export default function ConcernList({ concerns = mockConcerns }: ConcernListProp
                   {concern.acknowledgedBy ? `Acknowledged by ${concern.acknowledgedBy}` : 'Pending acknowledgment'}
                 </Text>
               </View>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => router.push(`/concern/${concern.id}` as any)}>
                 <Text className="text-xs text-blue-600 dark:text-blue-400 font-medium">
                   Details
                 </Text>

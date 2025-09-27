@@ -1,5 +1,5 @@
 import { NAV_THEME } from '@/lib/theme';
-import { Tabs, router } from 'expo-router';
+import { Link, Tabs, router } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import { UserIcon, MapIcon, ShieldAlertIcon, Bell, Settings } from 'lucide-react-native';
 import { View, TouchableOpacity } from 'react-native';
@@ -7,25 +7,29 @@ import { Text } from '@/components/ui/text';
 
 function HeaderRight() {
   const { colorScheme } = useColorScheme();
-  
+
   return (
     <View className="flex-row items-center space-x-3 gap-2 mr-4">
       {/* Notification Icon */}
       <TouchableOpacity className="p-2">
-        <Bell 
-          size={24} 
-          color={colorScheme === 'dark' ? '#ffffff' : '#000000'} 
+        <Bell
+          size={24}
+          color={colorScheme === 'dark' ? '#ffffff' : '#000000'}
           strokeWidth={1.5}
         />
       </TouchableOpacity>
 
       {/* Avatar */}
-      <TouchableOpacity 
-        className="w-8 h-8 bg-gray-300 rounded-full items-center justify-center"
-        onPress={() => router.push('/profile')}
+      <Link
+        href="/profile-settings/profile"
+        asChild
       >
-        <Text className="text-sm font-medium text-gray-700">JB</Text>
-      </TouchableOpacity>
+        <TouchableOpacity>
+          <View className="w-8 h-8 bg-gray-300 rounded-full items-center justify-center">
+            <Text className="text-sm font-medium text-gray-700">JB</Text>
+          </View>
+        </TouchableOpacity>
+      </Link>
     </View>
   );
 }
@@ -82,6 +86,7 @@ export default function TabsLayout() {
           fontSize: 18,
           fontWeight: '600',
         },
+        headerShown: true,
         headerLeft: () => <HeaderLeft />,
         headerRight: () => <HeaderRight />,
         headerTitle: '', // Remove the default title since we have custom header
@@ -92,9 +97,9 @@ export default function TabsLayout() {
         options={{
           title: 'Citizen',
           tabBarIcon: ({ color, focused }) => (
-            <UserIcon 
-              size={focused ? 26 : 22} 
-              color={color} 
+            <UserIcon
+              size={focused ? 26 : 22}
+              color={color}
               strokeWidth={focused ? 2.5 : 2}
             />
           ),
@@ -105,8 +110,8 @@ export default function TabsLayout() {
         options={{
           title: 'Maps',
           tabBarIcon: ({ color, focused }) => (
-            <MapIcon 
-              size={focused ? 26 : 22} 
+            <MapIcon
+              size={focused ? 26 : 22}
               color={color}
               strokeWidth={focused ? 2.5 : 2}
             />
@@ -118,21 +123,8 @@ export default function TabsLayout() {
         options={{
           title: 'Safety News',
           tabBarIcon: ({ color, focused }) => (
-            <ShieldAlertIcon 
-              size={focused ? 26 : 22} 
-              color={color}
-              strokeWidth={focused ? 2.5 : 2}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          title: 'Profile',
-          tabBarIcon: ({ color, focused }) => (
-            <Settings 
-              size={focused ? 26 : 22} 
+            <ShieldAlertIcon
+              size={focused ? 26 : 22}
               color={color}
               strokeWidth={focused ? 2.5 : 2}
             />

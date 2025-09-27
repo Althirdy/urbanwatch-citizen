@@ -20,6 +20,9 @@ export default function RootLayout() {
       <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="report/manual" options={{ title: 'Manual Incident Report' }} />
+        <Stack.Screen name="concerns" options={{ title: 'My Concerns' }} />
+        <Stack.Screen name="concern/[id]" options={{ title: 'Concern Details' }} />
       </Stack>
       <PortalHost />
     </ThemeProvider>

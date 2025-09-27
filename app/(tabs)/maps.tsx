@@ -1,7 +1,8 @@
 import React from 'react';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { StyleSheet, Text, TouchableOpacity, View, Alert, PermissionsAndroid, Platform } from 'react-native';
 import { useNavigation } from 'expo-router';
+import { markers, MarkerData } from '../heatmap/heatmap.data';
 
 const INITIAL_REGION = {
   latitude: 14.7752438,
@@ -14,6 +15,24 @@ export default function App() {
   const mapRef = React.useRef<MapView | null>(null);
   const navigation = useNavigation()
   const [locationPermission, setLocationPermission] = React.useState<boolean>(false);
+
+  // Function to get marker color based on type and severity
+  const getMarkerColor = (marker: MarkerData): string => {
+    switch (marker.type) {
+      case 'crime':
+        return marker.severity === 'high' ? '#DC2626' : '#EF4444'; // Red
+      case 'emergency':
+        return marker.severity === 'high' ? '#B91C1C' : '#DC2626'; // Dark red
+      case 'safety':
+        return marker.severity === 'high' ? '#D97706' : '#F59E0B'; // Orange/Amber
+      case 'incident':
+        return marker.severity === 'high' ? '#7C3AED' : '#8B5CF6'; // Purple
+      case 'report':
+        return marker.severity === 'high' ? '#059669' : '#10B981'; // Green
+      default:
+        return '#6B7280'; // Gray
+    }
+  };
 
   React.useEffect(() => {
     navigation.setOptions({
@@ -83,7 +102,20 @@ export default function App() {
         showsUserLocation={locationPermission}
         showsMyLocationButton={locationPermission}
         showsCompass={true}
-      />
+      >
+        {markers.map((marker) => (
+          <Marker
+            key={marker.id}
+            coordinate={{
+              latitude: marker.latitude,
+              longitude: marker.longitude,
+            }}
+            title={marker.title}
+            description={marker.description}
+            pinColor={getMarkerColor(marker)}
+          />
+        ))}
+      </MapView>
     </View>
   );
 }

@@ -1,18 +1,47 @@
 import { NAV_THEME } from '@/lib/theme';
 import { Link, Tabs, router } from 'expo-router';
 import { useColorScheme } from 'nativewind';
-import { UserIcon, MapIcon, ShieldAlertIcon, Bell, Settings } from 'lucide-react-native';
-import { View, TouchableOpacity } from 'react-native';
+import { UserIcon, MapIcon, ShieldAlertIcon, Bell, Settings, LogOut } from 'lucide-react-native';
+import { View, TouchableOpacity, Alert } from 'react-native';
 import { Text } from '@/components/ui/text';
+import { useAuth } from '@/context/AuthContext';
 
 function HeaderRight() {
   const { colorScheme } = useColorScheme();
+  const { logout, user } = useAuth();
+
+  const handleLogout = () => {
+    Alert.alert(
+      'Logout',
+      'Are you sure you want to logout?',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Logout',
+          style: 'destructive',
+          onPress: () => {
+            logout();
+            router.replace('/auth/login' as any);
+          },
+        },
+      ]
+    );
+  };
 
   return (
     <View className="flex-row items-center space-x-3 gap-2 mr-4">
       {/* Notification Icon */}
       <TouchableOpacity className="p-2">
         <Bell
+          size={24}
+          color={colorScheme === 'dark' ? '#ffffff' : '#000000'}
+          strokeWidth={1.5}
+        />
+      </TouchableOpacity>
+
+      {/* Logout Icon */}
+      <TouchableOpacity className="p-2" onPress={handleLogout}>
+        <LogOut
           size={24}
           color={colorScheme === 'dark' ? '#ffffff' : '#000000'}
           strokeWidth={1.5}
@@ -26,7 +55,9 @@ function HeaderRight() {
       >
         <TouchableOpacity>
           <View className="w-8 h-8 bg-gray-300 rounded-full items-center justify-center">
-            <Text className="text-sm font-medium text-gray-700">JB</Text>
+            <Text className="text-sm font-medium text-gray-700">
+              {user?.name?.charAt(0)?.toUpperCase() || 'U'}
+            </Text>
           </View>
         </TouchableOpacity>
       </Link>

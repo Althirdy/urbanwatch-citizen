@@ -131,6 +131,22 @@ export default function TabsLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="emergency-report"
+        options={{
+          title: 'Emergency Report',
+          href: null, // Hide from tab bar
+          headerShown: false, // Hide the default header
+        }}
+      />
+      <Tabs.Screen
+        name="incident-details"
+        options={{
+          title: 'Incident Details',
+          href: null, // Hide from tab bar
+          headerShown: false, // Hide the default header
+        }}
+      />
     </Tabs>
   );
 }

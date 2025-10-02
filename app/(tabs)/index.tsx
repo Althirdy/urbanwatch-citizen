@@ -4,6 +4,7 @@ import { Mic, FileText } from 'lucide-react-native';
 import { useColorScheme } from 'nativewind';
 import { router } from 'expo-router';
 import ConcernList from '@/components/concern-comp/concern-list';
+import { Link, router } from 'expo-router';
 
 export default function CitizenScreen() {
   const { colorScheme } = useColorScheme();
@@ -45,9 +46,6 @@ export default function CitizenScreen() {
             </TouchableOpacity>
 
             {/* Manual Report Card */}
-            <TouchableOpacity 
-              className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700"
-              onPress={() => router.push('/emergency-report')}
             >
               <View className="items-center">
                 {/* File Icon */}
@@ -77,10 +75,8 @@ export default function CitizenScreen() {
             <Text className="text-xl font-bold text-foreground">
               My Incident Concerns
             </Text>
-            <TouchableOpacity>
-              <Text className="text-sm text-blue-600 dark:text-blue-400 font-medium">
-                View all
-              </Text>
+            <TouchableOpacity onPress={() => router.push('/concerns')}>
+              <Text className="text-sm text-blue-600 dark:text-blue-400 font-medium">View all</Text>
             </TouchableOpacity>
           </View>
 

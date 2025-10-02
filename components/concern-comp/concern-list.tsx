@@ -125,9 +125,6 @@ export default function ConcernList({ concerns = mockConcerns }: ConcernListProp
                   </Text>
                 </TouchableOpacity>
               </View>
-            </CardContent>
-          </Card>
-        </TouchableOpacity>
       ))}
     </View>
   );
